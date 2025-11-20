@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:khaddo/core/constants/app_constants.dart';
 import 'dart:async';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/theme/app_spacing.dart';
@@ -186,7 +187,8 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
         
-            // Bottom loadin using loadinAnimatedWidget
+            // Bottom loading using loadingAnimatedWidget
+            _buildLoadingAnimatedWidget(),
 
           ],
         ),
@@ -294,50 +296,27 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 
-  Widget _buildBottomDecoration() {
+  Widget _buildLoadingAnimatedWidget() {
     return Positioned(
-      bottom: AppSpacing.xl.h,
+      bottom: AppSpacing.xl.h * 2,
       left: 0,
       right: 0,
       child: FadeTransition(
         opacity: _backgroundOpacityAnimation,
         child: Column(
           children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildDecorativeIcon(Icons.apple, AppColors.errorRed),
-                  SizedBox(width: AppSpacing.lg.w),
-                  _buildDecorativeIcon(Icons.restaurant, AppColors.secondaryOrange),
-                  SizedBox(width: AppSpacing.lg.w),
-                  _buildDecorativeIcon(Icons.bakery_dining, AppColors.warningYellow),
-                ],
-              ),
-            SizedBox(height: AppSpacing.xl.h),
-            Text(
-              '🌱',
-              style: TextStyle(fontSize: 32.sp),
+            // Loading indicator
+            LoadingAnimationWidget.horizontalRotatingDots(
+              color: AppColors.primaryGreen,
+              size: 50.w,
             ),
+            
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDecorativeIcon(IconData icon, Color color) {
-    return Container(
-      padding: EdgeInsets.all(AppSpacing.sm.r),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(AppSpacing.radiusSM.r),
-      ),
-      child: Icon(
-        icon,
-        color: color,
-        size: AppSpacing.iconLG.sp,
-      ),
-    );
-  }
 }
 
 // Custom Painter for Background Pattern
