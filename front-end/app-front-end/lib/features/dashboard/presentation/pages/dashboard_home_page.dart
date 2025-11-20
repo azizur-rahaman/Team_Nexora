@@ -13,9 +13,7 @@ class DashboardHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.neutralLightGray,
       appBar: AppBar(
-        backgroundColor: AppColors.neutralWhite,
         elevation: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
