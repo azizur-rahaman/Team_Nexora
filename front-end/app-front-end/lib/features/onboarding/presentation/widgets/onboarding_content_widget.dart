@@ -26,14 +26,17 @@ class OnboardingContentWidget extends StatelessWidget {
           // SizedBox(height: AppSpacing.xl.h * 2),
 
           // Title
-          Text(
-            item.title,
-            style: AppTypography.h2.copyWith(
-              fontSize: 32.sp,
-              fontWeight: AppTypography.bold,
-              color: AppColors.neutralBlack,
+           Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.md.w),
+            child: Text(
+              item.title,
+              style: AppTypography.h2.copyWith(
+                fontSize: 32.sp,
+                fontWeight: AppTypography.bold,
+                color: AppColors.neutralBlack,
+              ),
+              textAlign: TextAlign.start,
             ),
-            textAlign: TextAlign.start,
           ),
 
           SizedBox(height: AppSpacing.md.h),
