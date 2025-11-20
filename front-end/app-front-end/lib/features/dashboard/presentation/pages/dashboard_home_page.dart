@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -7,7 +8,6 @@ import '../widgets/inventory_summary_card.dart';
 import '../widgets/expiring_soon_section.dart';
 import '../widgets/recent_logs_section.dart';
 import '../widgets/recommended_resources_section.dart';
-import '../../../notifications/presentation/pages/notifications_page.dart';
 
 class DashboardHomePage extends StatelessWidget {
   const DashboardHomePage({super.key});
@@ -43,12 +43,7 @@ class DashboardHomePage extends StatelessWidget {
               color: AppColors.neutralBlack,
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationsPage(),
-                ),
-              );
+              context.push('/notifications');
             },
           ),
           IconButton(
@@ -57,7 +52,7 @@ class DashboardHomePage extends StatelessWidget {
               color: AppColors.neutralBlack,
             ),
             onPressed: () {
-              // Navigate to profile
+              context.go('/profile');
             },
           ),
         ],
@@ -123,23 +118,6 @@ class DashboardHomePage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Navigate to add item
-          _showAddItemBottomSheet(context);
-        },
-        backgroundColor: AppColors.primaryGreen,
-        foregroundColor: AppColors.neutralWhite,
-        elevation: AppSpacing.elevationMedium,
-        icon: const HugeIcon(
-          icon: HugeIcons.strokeRoundedAdd01,
-          color: AppColors.neutralWhite,
-        ),
-        label: Text(
-          'Add Item',
-          style: AppTypography.button,
-        ),
-      ),
     );
   }
 
@@ -199,143 +177,6 @@ class DashboardHomePage extends StatelessWidget {
             ),
           ),
       ],
-    );
-  }
-
-  void _showAddItemBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: AppColors.neutralWhite,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(AppSpacing.radiusLG),
-        ),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Handle bar
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: AppColors.neutralGray.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-              
-              Text(
-                'Add New Item',
-                style: AppTypography.h4,
-              ),
-              const SizedBox(height: AppSpacing.lg),
-              
-              // Add options
-              _buildAddOption(
-                context,
-                icon: HugeIcons.strokeRoundedQrCode,
-                title: 'Scan Barcode',
-                subtitle: 'Scan product barcode',
-                onTap: () {
-                  Navigator.pop(context);
-                  // Navigate to barcode scanner
-                },
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              _buildAddOption(
-                context,
-                icon: HugeIcons.strokeRoundedEdit02,
-                title: 'Manual Entry',
-                subtitle: 'Enter item details manually',
-                onTap: () {
-                  Navigator.pop(context);
-                  // Navigate to manual entry
-                },
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              _buildAddOption(
-                context,
-                icon: HugeIcons.strokeRoundedCamera01,
-                title: 'Take Photo',
-                subtitle: 'Capture receipt or item',
-                onTap: () {
-                  Navigator.pop(context);
-                  // Navigate to camera
-                },
-              ),
-              
-              const SizedBox(height: AppSpacing.lg),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildAddOption(
-    BuildContext context, {
-    required dynamic icon,
-    required String title,
-    required String subtitle,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
-      child: Container(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        decoration: BoxDecoration(
-          color: AppColors.neutralLightGray,
-          borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: AppColors.primaryGreenLight.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
-              ),
-              child: HugeIcon(
-                icon: icon,
-                color: AppColors.primaryGreen,
-                size: AppSpacing.iconMD,
-              ),
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: AppTypography.h6.copyWith(
-                      color: AppColors.neutralBlack,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: AppTypography.bodySmall.copyWith(
-                      color: AppColors.neutralGray,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            HugeIcon(
-              icon: HugeIcons.strokeRoundedArrowRight01,
-              size: AppSpacing.iconSM,
-              color: AppColors.neutralGray,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

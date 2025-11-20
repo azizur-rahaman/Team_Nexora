@@ -62,6 +62,9 @@ dependencies:
   
   # Icons
   hugeicons: ^1.1.1
+  
+  # Routing
+  go_router: ^14.6.2
 
 dev_dependencies:
   flutter_test:

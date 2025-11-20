@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'injection_container.dart' as di;
 import 'core/theme/app_theme.dart';
+import 'core/navigation/app_router.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
-import 'features/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +24,13 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return BlocProvider(
           create: (_) => di.sl<AuthBloc>(),
-          child: MaterialApp(
+          child: MaterialApp.router(
             title: 'FoodFlow',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.light,
-            home: const SplashScreen(),
+            routerConfig: appRouter,
           ),
         );
       },

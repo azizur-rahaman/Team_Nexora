@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../bloc/auth_bloc.dart';
 import 'forgot_password_page.dart';
 import 'signup_page.dart';
-import '../../../dashboard/presentation/pages/dashboard_home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -43,11 +43,7 @@ class _LoginPageState extends State<LoginPage> {
             );
           } else if (state is AuthAuthenticated) {
             // Navigate to dashboard
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => const DashboardHomePage(),
-              ),
-            );
+            context.go('/home');
           }
         },
         builder: (context, state) {
@@ -398,12 +394,6 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: state is AuthLoading
             ? null
             : () {
-              Navigator.of( context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const DashboardHomePage(),
-                  ),
-                );
-                return;
                 if (_formKey.currentState!.validate()) {
                   context.read<AuthBloc>().add(
                         LoginRequested(
