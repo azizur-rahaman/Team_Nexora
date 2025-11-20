@@ -5,7 +5,7 @@ class AppConstants {
   static const String appLogoImageWhite = 'assets/brand-logo.png';
 
   // Onboarding Images
-  static const String onboarding1Image = 'assets/images/onboarding/fridge_animation.gif';
+  static const String onboarding1Image = 'assets/images/onboarding/onboarding_1.png';
   static const String onboarding2Image = 'assets/images/onboarding/onboarding_2.png';
   static const String onboarding3Image = 'assets/images/onboarding/onboarding_3.png';
 
