@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:khaddo/core/constants/app_constants.dart';
 import 'dart:async';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/theme/app_spacing.dart';
-import '../auth/presentation/pages/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Logo Animation Controller
     _logoController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: Duration(milliseconds: 1500),
     );
 
     _logoScaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Text Animation Controller
     _textController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: Duration(milliseconds: 800),
     );
 
     _textFadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Tagline Animation Controller
     _taglineController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: Duration(milliseconds: 800),
     );
 
     _taglineFadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -104,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Background Animation Controller
     _backgroundController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: Duration(milliseconds: 2000),
     );
 
     _backgroundOpacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -173,12 +173,12 @@ class _SplashScreenState extends State<SplashScreen>
                   // Animated Logo
                   _buildAnimatedLogo(),
         
-                  SizedBox(height: AppSpacing.xl),
+                  SizedBox(height: AppSpacing.xl.h),
         
                   // Animated App Name
                   _buildAnimatedAppName(),
         
-                  SizedBox(height: AppSpacing.md),
+                  SizedBox(height: AppSpacing.md.h),
         
                   // Animated Tagline
                   _buildAnimatedTagline(),
@@ -220,30 +220,30 @@ class _SplashScreenState extends State<SplashScreen>
             child: Opacity(
               opacity: _logoOpacityAnimation.value,
               child: Container(
-                width: 160,
-                height: 160,
+                width: 160.w,
+                height: 160.w,
                 decoration: BoxDecoration(
                   color: AppColors.neutralWhite,
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.primaryGreen.withOpacity(0.3),
-                      blurRadius: 30,
-                      offset: const Offset(0, 10),
+                      blurRadius: 30.r,
+                      offset: Offset(0, 10.h),
                     ),
                   ],
                 ),
                 child: Center(
                   child: Container(
-                    width: 80,
-                    height: 80,
+                    width: 80.w,
+                    height: 80.w,
                     decoration: BoxDecoration(
                       gradient: AppColors.primaryGradient,
-                      borderRadius: BorderRadius.circular(AppSpacing.radiusLG),
+                      borderRadius: BorderRadius.circular(AppSpacing.radiusLG.r),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.eco,
-                      size: 50,
+                      size: 50.sp,
                       color: AppColors.neutralWhite,
                     ),
                   ),
@@ -268,10 +268,10 @@ class _SplashScreenState extends State<SplashScreen>
           child: Text(
             'FoodFlow',
             style: AppTypography.h1.copyWith(
-              fontSize: 48,
+              fontSize: 48.sp,
               fontWeight: AppTypography.bold,
               color: AppColors.neutralWhite,
-              letterSpacing: 2,
+              letterSpacing: 2.w,
             ),
           ),
         ),
@@ -289,7 +289,7 @@ class _SplashScreenState extends State<SplashScreen>
           style: AppTypography.h5.copyWith(
             color: AppColors.neutralDarkGray,
             fontWeight: AppTypography.medium,
-            letterSpacing: 1.5,
+            letterSpacing: 1.5.w,
           ),
         ),
       ),
@@ -298,27 +298,27 @@ class _SplashScreenState extends State<SplashScreen>
 
   Widget _buildBottomDecoration() {
     return Positioned(
-      bottom: AppSpacing.xl,
+      bottom: AppSpacing.xl.h,
       left: 0,
       right: 0,
       child: FadeTransition(
         opacity: _backgroundOpacityAnimation,
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildDecorativeIcon(Icons.apple, AppColors.errorRed),
-                SizedBox(width: AppSpacing.lg),
-                _buildDecorativeIcon(Icons.restaurant, AppColors.secondaryOrange),
-                SizedBox(width: AppSpacing.lg),
-                _buildDecorativeIcon(Icons.bakery_dining, AppColors.warningYellow),
-              ],
-            ),
-            SizedBox(height: AppSpacing.xl),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildDecorativeIcon(Icons.apple, AppColors.errorRed),
+                  SizedBox(width: AppSpacing.lg.w),
+                  _buildDecorativeIcon(Icons.restaurant, AppColors.secondaryOrange),
+                  SizedBox(width: AppSpacing.lg.w),
+                  _buildDecorativeIcon(Icons.bakery_dining, AppColors.warningYellow),
+                ],
+              ),
+            SizedBox(height: AppSpacing.xl.h),
             Text(
               '🌱',
-              style: TextStyle(fontSize: 32),
+              style: TextStyle(fontSize: 32.sp),
             ),
           ],
         ),
@@ -328,15 +328,15 @@ class _SplashScreenState extends State<SplashScreen>
 
   Widget _buildDecorativeIcon(IconData icon, Color color) {
     return Container(
-      padding: EdgeInsets.all(AppSpacing.sm),
+      padding: EdgeInsets.all(AppSpacing.sm.r),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusSM.r),
       ),
       child: Icon(
         icon,
         color: color,
-        size: AppSpacing.iconLG,
+        size: AppSpacing.iconLG.sp,
       ),
     );
   }
@@ -354,14 +354,14 @@ class BackgroundPatternPainter extends CustomPainter {
     // Draw leaf pattern
     for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 8; j++) {
-        final x = (size.width / 5) * i + 40;
-        final y = (size.height / 8) * j + 40;
+        final x = (size.width / 5) * i + 40.w;
+        final y = (size.height / 8) * j + 40.h;
 
         // Draw simple leaf shape
         final path = Path();
         path.moveTo(x, y);
-        path.quadraticBezierTo(x + 15, y + 10, x, y + 30);
-        path.quadraticBezierTo(x - 15, y + 10, x, y);
+        path.quadraticBezierTo(x + 15.w, y + 10.h, x, y + 30.h);
+        path.quadraticBezierTo(x - 15.w, y + 10.h, x, y);
 
         canvas.drawPath(path, paint);
       }
