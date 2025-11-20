@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:khaddo/core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -18,22 +20,33 @@ class DashboardHomePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
+        leading: Container(
+          margin: EdgeInsets.only(left: 10.w),
+          child: CircleAvatar(
+            backgroundColor: AppColors.neutralGray.withOpacity(0.2),
+            child: const HugeIcon(
+              icon: HugeIcons.strokeRoundedUser,
+              color: AppColors.neutralBlack,
+            ),
+          ),
+        ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Dashboard',
-              style: AppTypography.h4.copyWith(
-                color: AppColors.neutralBlack,
-              ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              'Welcome back, User!',
-              style: AppTypography.bodySmall.copyWith(
-                color: AppColors.neutralGray,
-              ),
-            ),
+            Image.asset(AppConstants.appLogoImage, height: 50.h),
+            // Text(
+            //   'Dashboard',
+            //   style: AppTypography.h4.copyWith(
+            //     color: AppColors.neutralBlack,
+            //   ),
+            // ),
+            // const SizedBox(height: 2),
+            // Text(
+            //   'Welcome back, User!',
+            //   style: AppTypography.bodySmall.copyWith(
+            //     color: AppColors.neutralGray,
+            //   ),
+            // ),
           ],
         ),
         actions: [
@@ -46,15 +59,16 @@ class DashboardHomePage extends StatelessWidget {
               context.push('/notifications');
             },
           ),
-          IconButton(
-            icon: const HugeIcon(
-              icon: HugeIcons.strokeRoundedUser,
-              color: AppColors.neutralBlack,
-            ),
-            onPressed: () {
-              context.go('/profile');
-            },
-          ),
+          SizedBox(width: 8.w),
+          // IconButton(
+          //   icon: const HugeIcon(
+          //     icon: HugeIcons.strokeRoundedUser,
+          //     color: AppColors.neutralBlack,
+          //   ),
+          //   onPressed: () {
+          //     context.go('/profile');
+          //   },
+          // ),
         ],
       ),
       body: RefreshIndicator(
