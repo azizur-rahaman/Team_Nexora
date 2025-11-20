@@ -59,6 +59,9 @@ dependencies:
   
   # Text Animations
   animated_text_kit: ^4.3.0
+  
+  # Icons
+  hugeicons: ^1.1.1
 
 dev_dependencies:
   flutter_test:
