@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
-import 'change_password_page.dart';
-import 'edit_profile_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -92,11 +91,7 @@ class ProfilePage extends StatelessWidget {
                 subtitle: 'Update name, preferences, and budget goals',
                 icon: Icons.person_outline,
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const EditProfilePage(),
-                    ),
-                  );
+                  context.push('/profile/edit');
                 },
               ),
               const SizedBox(height: AppSpacing.sm),
@@ -105,11 +100,7 @@ class ProfilePage extends StatelessWidget {
                 subtitle: 'Keep your account secure with a new passphrase',
                 icon: Icons.lock_outline,
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const ChangePasswordPage(),
-                    ),
-                  );
+                  context.push('/profile/change-password');
                 },
               ),
             ],

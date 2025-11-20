@@ -201,6 +201,17 @@ class ScaffoldWithNavBar extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               _buildAddOption(
                 context,
+                icon: HugeIcons.strokeRoundedRestaurant02,
+                title: 'Log Food Consumption',
+                subtitle: 'Track what you ate',
+                onTap: () {
+                  Navigator.pop(context);
+                  context.push('/consumption-logs/add');
+                },
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              _buildAddOption(
+                context,
                 icon: HugeIcons.strokeRoundedCamera01,
                 title: 'Take Photo',
                 subtitle: 'Capture receipt or item',

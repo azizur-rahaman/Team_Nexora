@@ -3,29 +3,40 @@ import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
-import '../../../consumption/domain/entities/consumption_log.dart';
 
 class RecentLogsSection extends StatelessWidget {
   const RecentLogsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final consumptionLogs = ConsumptionLogSamples.logs;
-    
     final recentLogs = [
-      ...consumptionLogs.map((log) => LogItem(
-        title: 'Used ${log.itemName}',
-        subtitle: '${log.quantity} ${log.unit} • ${log.category.label}',
-        time: _formatRelativeTime(log.date),
-        icon: HugeIcons.strokeRoundedCheckmarkCircle02,
-        iconColor: log.category.accentColor,
-      )),
       LogItem(
         title: 'Added Organic Apples',
         subtitle: '2 kg • Expires in 7 days',
         time: '2 hours ago',
         icon: HugeIcons.strokeRoundedAddCircle,
         iconColor: AppColors.successGreen,
+      ),
+      LogItem(
+        title: 'Used Fresh Tomatoes',
+        subtitle: '500g • Made pasta sauce',
+        time: '5 hours ago',
+        icon: HugeIcons.strokeRoundedCheckmarkCircle02,
+        iconColor: AppColors.primaryGreen,
+      ),
+      LogItem(
+        title: 'Expired Bread',
+        subtitle: '1 loaf • Moved to compost',
+        time: 'Yesterday',
+        icon: HugeIcons.strokeRoundedAlertCircle,
+        iconColor: AppColors.warningYellow,
+      ),
+      LogItem(
+        title: 'Shared with Neighbor',
+        subtitle: 'Extra vegetables',
+        time: '2 days ago',
+        icon: HugeIcons.strokeRoundedShare08,
+        iconColor: AppColors.infoBlue,
       ),
     ];
 
@@ -88,16 +99,6 @@ class RecentLogsSection extends StatelessWidget {
         ),
       ),
     );
-  }
-  
-  String _formatRelativeTime(DateTime date) {
-    final Duration diff = DateTime.now().difference(date);
-    if (diff.inDays == 0) {
-      if (diff.inHours == 0) return '${diff.inMinutes} minutes ago';
-      return '${diff.inHours} hours ago';
-    }
-    if (diff.inDays == 1) return 'Yesterday';
-    return '${diff.inDays} days ago';
   }
 }
 

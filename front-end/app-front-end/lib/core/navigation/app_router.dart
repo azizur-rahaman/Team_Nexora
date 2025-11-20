@@ -9,7 +9,13 @@ import '../../features/dashboard/presentation/pages/dashboard_home_page.dart';
 import '../../features/explore/presentation/pages/explore_page.dart';
 import '../../features/rewards/presentation/pages/rewards_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/profile/presentation/pages/edit_profile_page.dart';
+import '../../features/profile/presentation/pages/change_password_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
+import '../../features/consumption/presentation/pages/consumption_logs_list_page.dart';
+import '../../features/consumption/presentation/pages/add_consumption_log_page.dart';
+import '../../features/consumption/presentation/pages/edit_consumption_log_page.dart';
+import '../../features/consumption/presentation/pages/consumption_log_details_page.dart';
 import 'scaffold_with_nav_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -49,6 +55,34 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/notifications',
       builder: (context, state) => const NotificationsPage(),
+    ),
+    
+    // Consumption Logs (outside shell)
+    GoRoute(
+      path: '/consumption-logs',
+      builder: (context, state) => const ConsumptionLogsListPage(),
+    ),
+    GoRoute(
+      path: '/consumption-logs/add',
+      builder: (context, state) => const AddConsumptionLogPage(),
+    ),
+    GoRoute(
+      path: '/consumption-logs/edit',
+      builder: (context, state) => EditConsumptionLogPage(),
+    ),
+    GoRoute(
+      path: '/consumption-logs/details',
+      builder: (context, state) => ConsumptionLogDetailsPage.preview(),
+    ),
+    
+    // Profile Settings (outside shell)
+    GoRoute(
+      path: '/profile/edit',
+      builder: (context, state) => const EditProfilePage(),
+    ),
+    GoRoute(
+      path: '/profile/change-password',
+      builder: (context, state) => const ChangePasswordPage(),
     ),
     
     // Shell Routes with Bottom Navigation
