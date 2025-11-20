@@ -42,7 +42,7 @@ class ExpiringSoonSection extends StatelessWidget {
     ];
 
     return SizedBox(
-      height: 140,
+      height: 160,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: expiringItems.length,
@@ -87,22 +87,23 @@ class ExpiringSoonSection extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.sm),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             // Image/Icon Container
             Container(
               width: double.infinity,
-              height: 60,
+              height: 56,
               decoration: BoxDecoration(
                 color: AppColors.neutralLightGray,
                 borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
               ),
               child: Icon(
                 item.imageIcon,
-                size: 32,
+                size: 28,
                 color: AppColors.primaryGreen,
               ),
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: AppSpacing.xs),
             
             // Item Name
             Text(
@@ -110,27 +111,29 @@ class ExpiringSoonSection extends StatelessWidget {
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.neutralBlack,
                 fontWeight: AppTypography.semiBold,
+                fontSize: 13,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: AppSpacing.xs),
+            const SizedBox(height: 2),
             
             // Category
             Text(
               item.category,
               style: AppTypography.bodySmall.copyWith(
                 color: AppColors.neutralGray,
+                fontSize: 11,
               ),
             ),
             
-            const Spacer(),
+            const SizedBox(height: AppSpacing.xs),
             
             // Days Left Badge
             Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.sm,
-                vertical: AppSpacing.xs,
+                horizontal: AppSpacing.xs,
+                vertical: 2,
               ),
               decoration: BoxDecoration(
                 color: badgeColor.withOpacity(0.15),
@@ -141,16 +144,16 @@ class ExpiringSoonSection extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.access_time,
-                    size: 12,
+                    size: 10,
                     color: badgeColor,
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 3),
                   Text(
                     badgeText,
                     style: AppTypography.bodySmall.copyWith(
                       color: badgeColor,
                       fontWeight: AppTypography.semiBold,
-                      fontSize: 11,
+                      fontSize: 10,
                     ),
                   ),
                 ],
