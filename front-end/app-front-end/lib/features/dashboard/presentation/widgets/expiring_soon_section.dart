@@ -76,13 +76,6 @@ class ExpiringSoonSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.neutralWhite,
         borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadow.withOpacity(0.5),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.sm),

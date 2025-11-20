@@ -42,15 +42,7 @@ class RecentLogsSection extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.neutralWhite,
         borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadow.withOpacity(0.5),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: ListView.separated(
         shrinkWrap: true,
