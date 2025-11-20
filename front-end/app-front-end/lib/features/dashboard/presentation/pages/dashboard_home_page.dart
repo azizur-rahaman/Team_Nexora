@@ -85,8 +85,13 @@ class DashboardHomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: AppSpacing.md),
-                // Inventory Summary Card
-                const InventorySummaryCard(),
+                // Inventory Summary Card (Clickable to navigate to inventory)
+                GestureDetector(
+                  onTap: () {
+                    context.push('/inventory');
+                  },
+                  child: const InventorySummaryCard(),
+                ),
                 
                 const SizedBox(height: AppSpacing.lg),
                 
@@ -96,7 +101,7 @@ class DashboardHomePage extends StatelessWidget {
                   title: 'Expiring Soon',
                   subtitle: 'Items to use quickly',
                   onSeeAll: () {
-                    // Navigate to expiring items
+                    context.push('/inventory');
                   },
                 ),
                 const SizedBox(height: AppSpacing.sm),
@@ -123,6 +128,9 @@ class DashboardHomePage extends StatelessWidget {
                   context,
                   title: 'Recommended Resources',
                   subtitle: 'Tips to reduce food waste',
+                  onSeeAll: () {
+                    context.push('/resources');
+                  },
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 const RecommendedResourcesSection(),

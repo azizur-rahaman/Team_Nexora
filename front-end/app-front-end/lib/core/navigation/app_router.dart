@@ -16,6 +16,14 @@ import '../../features/consumption/presentation/pages/consumption_logs_list_page
 import '../../features/consumption/presentation/pages/add_consumption_log_page.dart';
 import '../../features/consumption/presentation/pages/edit_consumption_log_page.dart';
 import '../../features/consumption/presentation/pages/consumption_log_details_page.dart';
+import '../../features/inventory/presentation/pages/inventory_list_page.dart';
+import '../../features/inventory/presentation/pages/add_inventory_item_page.dart';
+import '../../features/inventory/presentation/pages/edit_inventory_item_page.dart';
+import '../../features/inventory/presentation/pages/inventory_item_details_page.dart';
+import '../../features/inventory/domain/entities/inventory_item.dart';
+import '../../features/resources/presentation/pages/resources_list_page.dart';
+import '../../features/resources/presentation/pages/resource_details_page.dart';
+import '../../features/resources/domain/entities/resource.dart';
 import 'scaffold_with_nav_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -83,6 +91,61 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/profile/change-password',
       builder: (context, state) => const ChangePasswordPage(),
+    ),
+    
+    // Inventory Routes (outside shell)
+    GoRoute(
+      path: '/inventory',
+      builder: (context, state) => const InventoryListPage(),
+    ),
+    GoRoute(
+      path: '/inventory/add',
+      builder: (context, state) => const AddInventoryItemPage(),
+    ),
+    GoRoute(
+      path: '/inventory/edit/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        // In a real app, fetch item from BLoC/repository
+        // For now, using sample data
+        final item = InventoryItemSamples.items.firstWhere(
+          (item) => item.id == id,
+          orElse: () => InventoryItemSamples.featured,
+        );
+        return EditInventoryItemPage(item: item);
+      },
+    ),
+    GoRoute(
+      path: '/inventory/details/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        // In a real app, fetch item from BLoC/repository
+        // For now, using sample data
+        final item = InventoryItemSamples.items.firstWhere(
+          (item) => item.id == id,
+          orElse: () => InventoryItemSamples.featured,
+        );
+        return InventoryItemDetailsPage(item: item);
+      },
+    ),
+    
+    // Resources Routes (outside shell)
+    GoRoute(
+      path: '/resources',
+      builder: (context, state) => const ResourcesListPage(),
+    ),
+    GoRoute(
+      path: '/resources/details/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        // In a real app, fetch resource from BLoC/repository
+        // For now, using sample data
+        final resource = ResourceSamples.items.firstWhere(
+          (resource) => resource.id == id,
+          orElse: () => ResourceSamples.featured,
+        );
+        return ResourceDetailsPage(resource: resource);
+      },
     ),
     
     // Shell Routes with Bottom Navigation

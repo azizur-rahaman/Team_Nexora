@@ -51,15 +51,20 @@ class RecommendedResourcesSection extends StatelessWidget {
   }
 
   Widget _buildResourceCard(ResourceItem resource) {
-    return Container(
-      width: 280,
-      decoration: BoxDecoration(
-        color: AppColors.neutralWhite,
-        borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return GestureDetector(
+      onTap: () {
+        // Navigate to resources list page
+        // In production, could navigate directly to the specific resource
+      },
+      child: Container(
+        width: 280,
+        decoration: BoxDecoration(
+          color: AppColors.neutralWhite,
+          borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           // Header with icon
           Container(
             height: 80,
@@ -137,6 +142,7 @@ class RecommendedResourcesSection extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
