@@ -6,6 +6,8 @@ import 'package:khaddo/core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../consumption/presentation/pages/add_consumption_log_page.dart';
+import '../../../consumption/presentation/pages/consumption_logs_list_page.dart';
 import '../widgets/inventory_summary_card.dart';
 import '../widgets/expiring_soon_section.dart';
 import '../widgets/recent_logs_section.dart';
@@ -110,7 +112,11 @@ class DashboardHomePage extends StatelessWidget {
                   title: 'Recent Logs',
                   subtitle: 'Your latest activities',
                   onSeeAll: () {
-                    // Navigate to all logs
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const ConsumptionLogsListPage(),
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(height: AppSpacing.sm),
@@ -132,6 +138,19 @@ class DashboardHomePage extends StatelessWidget {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const AddConsumptionLogPage(),
+            ),
+          );
+        },
+        backgroundColor: AppColors.primaryGreen,
+        foregroundColor: AppColors.neutralWhite,
+        icon: const Icon(Icons.add),
+        label: const Text('Log Food'),
       ),
     );
   }
