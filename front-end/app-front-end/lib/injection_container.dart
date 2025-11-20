@@ -3,6 +3,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:http/http.dart' as http;
 
 import 'core/network/network_info.dart';
+import 'features/auth/data/datasources/auth_remote_data_source.dart';
+import 'features/auth/data/datasources/auth_remote_data_source_impl.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/usecases/login.dart';
@@ -30,9 +32,9 @@ Future<void> init() async {
   );
 
   // Data sources
-  // sl.registerLazySingleton<AuthRemoteDataSource>(
-  //   () => AuthRemoteDataSourceImpl(client: sl()),
-  // );
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(client: sl()),
+  );
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(
