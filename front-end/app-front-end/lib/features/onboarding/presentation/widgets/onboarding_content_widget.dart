@@ -33,7 +33,7 @@ class OnboardingContentWidget extends StatelessWidget {
               fontWeight: AppTypography.bold,
               color: AppColors.neutralBlack,
             ),
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
           ),
 
           SizedBox(height: AppSpacing.md.h),
@@ -48,7 +48,7 @@ class OnboardingContentWidget extends StatelessWidget {
                 color: AppColors.neutralDarkGray,
                 height: 1.6,
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             ),
           ),
 
