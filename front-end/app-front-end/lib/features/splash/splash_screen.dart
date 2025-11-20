@@ -186,8 +186,8 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
         
-            // Bottom Decorative Elements
-            _buildBottomDecoration(),
+            // Bottom loadin using loadinAnimatedWidget
+
           ],
         ),
       ),
@@ -223,8 +223,11 @@ class _SplashScreenState extends State<SplashScreen>
                 width: 160.w,
                 height: 160.w,
                 decoration: BoxDecoration(
-                  color: AppColors.neutralWhite,
                   shape: BoxShape.circle,
+                  image: const DecorationImage(
+                    image: AssetImage(AppConstants.appLogoImage),
+                    fit: BoxFit.cover,
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.primaryGreen.withOpacity(0.3),
@@ -238,14 +241,9 @@ class _SplashScreenState extends State<SplashScreen>
                     width: 80.w,
                     height: 80.w,
                     decoration: BoxDecoration(
-                      gradient: AppColors.primaryGradient,
-                      borderRadius: BorderRadius.circular(AppSpacing.radiusLG.r),
+                      
                     ),
-                    child: Icon(
-                      Icons.eco,
-                      size: 50.sp,
-                      color: AppColors.neutralWhite,
-                    ),
+                    
                   ),
                 ),
               ),
