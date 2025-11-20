@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// App Color Palette - Modern, Sustainable, Clean
 class AppColors {
   // Primary Colors - Green (Eco-Friendly & Fresh)
-  static const Color primaryGreen = Color(0xff307A59); // Main Green
+  static const Color primaryGreen = Color(0xFF307A59); // Main Green
   static const Color primaryGreenLight = Color(0xFF81C784); // Light Green
   static const Color primaryGreenDark = Color(0xFF388E3C); // Dark Green
   
