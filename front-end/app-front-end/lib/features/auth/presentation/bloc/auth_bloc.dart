@@ -13,6 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.login,
   }) : super(AuthInitial()) {
     on<LoginRequested>(_onLoginRequested);
+    on<PasswordResetRequested>(_onPasswordResetRequested);
   }
 
   Future<void> _onLoginRequested(
@@ -32,6 +33,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) => emit(AuthError(message: _mapFailureToMessage(failure))),
       (user) => emit(AuthAuthenticated(user: user)),
     );
+  }
+
+  Future<void> _onPasswordResetRequested(
+    PasswordResetRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+
+    // Simulate password reset API call
+    // TODO: Implement actual password reset use case
+    await Future.delayed(const Duration(seconds: 2));
+
+    // For now, we'll just emit success
+    // In a real implementation, this would call a use case
+    emit(AuthPasswordResetSent(email: event.email));
   }
 
   String _mapFailureToMessage(failure) {

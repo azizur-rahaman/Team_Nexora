@@ -30,3 +30,12 @@ class AuthError extends AuthState {
 }
 
 class AuthUnauthenticated extends AuthState {}
+
+class AuthPasswordResetSent extends AuthState {
+  final String email;
+
+  const AuthPasswordResetSent({required this.email});
+
+  @override
+  List<Object> get props => [email];
+}

@@ -4,6 +4,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../bloc/auth_bloc.dart';
+import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -110,7 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                // Navigate to forgot password
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => const ForgotPasswordPage(),
+                                  ),
+                                );
                               },
                               style: TextButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
