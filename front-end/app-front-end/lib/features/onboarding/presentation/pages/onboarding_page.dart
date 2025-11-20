@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -11,7 +12,6 @@ import '../bloc/onboarding_event.dart';
 import '../bloc/onboarding_state.dart';
 import '../widgets/onboarding_content_widget.dart';
 import '../widgets/page_indicator.dart';
-import '../../../auth/presentation/pages/login_page.dart';
 
 /// Onboarding Page
 /// Displays the onboarding/welcome screens
@@ -57,15 +57,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   void _navigateToLogin() {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-        transitionDuration: const Duration(milliseconds: 500),
-      ),
-    );
+    context.go('/login');
   }
 
   @override
