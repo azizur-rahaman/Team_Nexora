@@ -5,8 +5,6 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../bloc/auth_bloc.dart';
-import 'forgot_password_page.dart';
-import 'signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -114,11 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => const ForgotPasswordPage(),
-                                  ),
-                                );
+                                context.push('/forgot-password');
                               },
                               style: TextButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
@@ -154,11 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => const SignupPage(),
-                                    ),
-                                  );
+                                  context.push('/signup');
                                 },
                                 style: TextButton.styleFrom(
                                   padding: EdgeInsets.zero,
@@ -395,12 +385,17 @@ class _LoginPageState extends State<LoginPage> {
             ? null
             : () {
                 if (_formKey.currentState!.validate()) {
-                  context.read<AuthBloc>().add(
-                        LoginRequested(
-                          email: _emailController.text.trim(),
-                          password: _passwordController.text,
-                        ),
-                      );
+                  // TODO: Implement actual authentication
+                  // For now, navigate directly to home
+                  context.go('/home');
+                  
+                  // Uncomment when backend is ready:
+                  // context.read<AuthBloc>().add(
+                  //       LoginRequested(
+                  //         email: _emailController.text.trim(),
+                  //         password: _passwordController.text,
+                  //       ),
+                  //     );
                 }
               },
         style: ElevatedButton.styleFrom(
