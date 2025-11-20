@@ -7,6 +7,7 @@ import '../widgets/inventory_summary_card.dart';
 import '../widgets/expiring_soon_section.dart';
 import '../widgets/recent_logs_section.dart';
 import '../widgets/recommended_resources_section.dart';
+import '../../../notifications/presentation/pages/notifications_page.dart';
 
 class DashboardHomePage extends StatelessWidget {
   const DashboardHomePage({super.key});
@@ -41,7 +42,12 @@ class DashboardHomePage extends StatelessWidget {
               color: AppColors.neutralBlack,
             ),
             onPressed: () {
-              // Navigate to notifications
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationsPage(),
+                ),
+              );
             },
           ),
           IconButton(
