@@ -6,6 +6,7 @@ import '../../../../core/theme/app_typography.dart';
 import '../bloc/auth_bloc.dart';
 import 'forgot_password_page.dart';
 import 'signup_page.dart';
+import '../../../dashboard/presentation/pages/dashboard_home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -41,7 +42,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
             );
           } else if (state is AuthAuthenticated) {
-            // Navigate to home page
+            // Navigate to dashboard
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const DashboardHomePage(),
+              ),
+            );
           }
         },
         builder: (context, state) {
