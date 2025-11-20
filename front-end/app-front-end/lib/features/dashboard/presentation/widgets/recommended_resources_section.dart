@@ -37,7 +37,7 @@ class RecommendedResourcesSection extends StatelessWidget {
     ];
 
     return SizedBox(
-      height: 180,
+      height: 200,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: resources.length,
@@ -94,49 +94,52 @@ class RecommendedResourcesSection extends StatelessWidget {
           ),
           
           // Content
-          Padding(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  resource.title,
-                  style: AppTypography.h6.copyWith(
-                    color: AppColors.neutralBlack,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    resource.title,
+                    style: AppTypography.h6.copyWith(
+                      color: AppColors.neutralBlack,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                Text(
-                  resource.description,
-                  style: AppTypography.bodySmall.copyWith(
-                    color: AppColors.neutralGray,
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    resource.description,
+                    style: AppTypography.bodySmall.copyWith(
+                      color: AppColors.neutralGray,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                
-                // Read More Link
-                Row(
-                  children: [
-                    Text(
-                      'Read More',
-                      style: AppTypography.bodySmall.copyWith(
-                        color: resource.color,
-                        fontWeight: AppTypography.semiBold,
+                  const Spacer(),
+                  
+                  // Read More Link
+                  Row(
+                    children: [
+                      Text(
+                        'Read More',
+                        style: AppTypography.bodySmall.copyWith(
+                          color: resource.color,
+                          fontWeight: AppTypography.semiBold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 4),
-                    HugeIcon(
-                      icon: HugeIcons.strokeRoundedArrowRight01,
-                      size: 14,
-                      color: resource.color,
-                    ),
-                  ],
-                ),
-              ],
+                      const SizedBox(width: 4),
+                      HugeIcon(
+                        icon: HugeIcons.strokeRoundedArrowRight01,
+                        size: 14,
+                        color: resource.color,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
