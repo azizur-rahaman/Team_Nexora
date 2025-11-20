@@ -73,7 +73,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     return BlocProvider(
       create: (context) => OnboardingBloc(),
       child: Scaffold(
-        backgroundColor: AppColors.neutralWhite,
+        backgroundColor: Color(0xFFF9F9F9),
         body: SafeArea(
           child: BlocConsumer<OnboardingBloc, OnboardingState>(
             listener: (context, state) {
