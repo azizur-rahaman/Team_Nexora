@@ -60,28 +60,34 @@ final GoRouter appRouter = GoRouter(
     // Consumption Logs (outside shell)
     GoRoute(
       path: '/consumption-logs',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const ConsumptionLogsListPage(),
     ),
     GoRoute(
       path: '/consumption-logs/add',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const AddConsumptionLogPage(),
     ),
     GoRoute(
       path: '/consumption-logs/edit',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => EditConsumptionLogPage(),
     ),
     GoRoute(
       path: '/consumption-logs/details',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => ConsumptionLogDetailsPage.preview(),
     ),
     
     // Profile Settings (outside shell)
     GoRoute(
       path: '/profile/edit',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const EditProfilePage(),
     ),
     GoRoute(
       path: '/profile/change-password',
+      parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const ChangePasswordPage(),
     ),
     
