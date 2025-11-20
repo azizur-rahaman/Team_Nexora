@@ -16,6 +16,6 @@ class AppConstants {
   static const String onboarding2Title = 'Reduce Food Waste';
   static const String onboarding2Description = 'Get smart notifications about expiring food items and save money while helping the environment.';
 
-  static const String onboarding3Title = 'Save Money & Planet';
-  static const String onboarding3Description = 'Join thousands of users making a positive impact by reducing food waste and living sustainably.';
+  static const String onboarding3Title = 'Share Extra Food, Help Others';
+  static const String onboarding3Description = 'Join thousands of users making a positive impact by reducing food waste and living sustainably by donating extra food to those in need.';
 }
