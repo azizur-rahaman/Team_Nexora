@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -6,13 +7,28 @@ import 'package:khaddo/core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../surplus/presentation/bloc/surplus_bloc.dart';
+import '../../../surplus/presentation/bloc/surplus_event.dart';
 import '../widgets/inventory_summary_card.dart';
+import '../widgets/community_surplus_card.dart';
 import '../widgets/expiring_soon_section.dart';
 import '../widgets/recent_logs_section.dart';
 import '../widgets/recommended_resources_section.dart';
 
-class DashboardHomePage extends StatelessWidget {
+class DashboardHomePage extends StatefulWidget {
   const DashboardHomePage({super.key});
+
+  @override
+  State<DashboardHomePage> createState() => _DashboardHomePageState();
+}
+
+class _DashboardHomePageState extends State<DashboardHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Load surplus items on dashboard init
+    context.read<SurplusBloc>().add(const LoadSurplusItems());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +108,11 @@ class DashboardHomePage extends StatelessWidget {
                   },
                   child: const InventorySummaryCard(),
                 ),
+                
+                const SizedBox(height: AppSpacing.lg),
+                
+                // Community Surplus Card
+                const CommunitySurplusCard(),
                 
                 const SizedBox(height: AppSpacing.lg),
                 

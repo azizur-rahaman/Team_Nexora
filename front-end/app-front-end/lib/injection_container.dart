@@ -27,6 +27,14 @@ import 'features/resources/domain/usecases/filter_resources.dart';
 import 'features/resources/domain/usecases/toggle_bookmark.dart';
 import 'features/resources/domain/usecases/increment_views.dart';
 import 'features/resources/presentation/bloc/resource_bloc.dart';
+import 'features/surplus/data/datasources/surplus_data_source.dart';
+import 'features/surplus/data/repositories/surplus_repository_impl.dart';
+import 'features/surplus/domain/repositories/surplus_repository.dart';
+import 'features/surplus/domain/usecases/get_all_surplus_items.dart';
+import 'features/surplus/domain/usecases/get_surplus_item_by_id.dart';
+import 'features/surplus/domain/usecases/create_surplus_request.dart';
+import 'features/surplus/domain/usecases/increment_surplus_views.dart';
+import 'features/surplus/presentation/bloc/surplus_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -114,6 +122,35 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<ResourceDataSource>(
     () => ResourceLocalDataSource(),
+  );
+
+  //! Features - Surplus
+  // Bloc
+  sl.registerFactory(
+    () => SurplusBloc(
+      getAllSurplusItems: sl(),
+      getSurplusItemById: sl(),
+      createSurplusRequest: sl(),
+      incrementSurplusViews: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => GetAllSurplusItems(sl()));
+  sl.registerLazySingleton(() => GetSurplusItemById(sl()));
+  sl.registerLazySingleton(() => CreateSurplusRequest(sl()));
+  sl.registerLazySingleton(() => IncrementSurplusViews(sl()));
+
+  // Repository
+  sl.registerLazySingleton<SurplusRepository>(
+    () => SurplusRepositoryImpl(
+      dataSource: sl(),
+    ),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<SurplusDataSource>(
+    () => SurplusDataSourceImpl(),
   );
 
   //! Core

@@ -24,6 +24,9 @@ import '../../features/inventory/domain/entities/inventory_item.dart';
 import '../../features/resources/presentation/pages/resources_list_page.dart';
 import '../../features/resources/presentation/pages/resource_details_page.dart';
 import '../../features/resources/domain/entities/resource.dart';
+import '../../features/surplus/presentation/pages/surplus_feed_page.dart';
+import '../../features/surplus/presentation/pages/surplus_detail_page.dart';
+import '../../features/surplus/presentation/pages/request_surplus_page.dart';
 import 'scaffold_with_nav_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -145,6 +148,26 @@ final GoRouter appRouter = GoRouter(
           orElse: () => ResourceSamples.featured,
         );
         return ResourceDetailsPage(resource: resource);
+      },
+    ),
+    
+    // Surplus Routes (outside shell)
+    GoRoute(
+      path: '/surplus',
+      builder: (context, state) => const SurplusFeedPage(),
+    ),
+    GoRoute(
+      path: '/surplus/details/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return SurplusDetailPage(id: id);
+      },
+    ),
+    GoRoute(
+      path: '/surplus/request/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return RequestSurplusPage(itemId: id);
       },
     ),
     
