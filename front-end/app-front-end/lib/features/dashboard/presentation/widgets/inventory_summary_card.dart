@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -33,8 +34,8 @@ class InventorySummaryCard extends StatelessWidget {
                     color: AppColors.neutralWhite.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
                   ),
-                  child: const Icon(
-                    Icons.inventory_2_outlined,
+                  child: const HugeIcon(
+                    icon: HugeIcons.strokeRoundedPackage,
                     color: AppColors.neutralWhite,
                     size: 24,
                   ),
@@ -57,7 +58,7 @@ class InventorySummaryCard extends StatelessWidget {
                   child: _buildStatItem(
                     label: 'Total Items',
                     value: '48',
-                    icon: Icons.food_bank_outlined,
+                    icon: HugeIcons.strokeRoundedBread01,
                   ),
                 ),
                 Container(
@@ -69,7 +70,7 @@ class InventorySummaryCard extends StatelessWidget {
                   child: _buildStatItem(
                     label: 'Expiring Soon',
                     value: '7',
-                    icon: Icons.warning_amber_outlined,
+                    icon: HugeIcons.strokeRoundedAlertCircle,
                   ),
                 ),
                 Container(
@@ -81,7 +82,7 @@ class InventorySummaryCard extends StatelessWidget {
                   child: _buildStatItem(
                     label: 'Saved',
                     value: '156',
-                    icon: Icons.eco_outlined,
+                    icon: HugeIcons.strokeRoundedLeaf01,
                   ),
                 ),
               ],
@@ -98,8 +99,8 @@ class InventorySummaryCard extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.eco,
+                  HugeIcon(
+                    icon: HugeIcons.strokeRoundedLeaf01,
                     color: AppColors.neutralWhite,
                     size: AppSpacing.iconSM,
                   ),
@@ -124,12 +125,12 @@ class InventorySummaryCard extends StatelessWidget {
   Widget _buildStatItem({
     required String label,
     required String value,
-    required IconData icon,
+    required dynamic icon,
   }) {
     return Column(
       children: [
-        Icon(
-          icon,
+        HugeIcon(
+          icon: icon,
           color: AppColors.neutralWhite.withOpacity(0.8),
           size: 20,
         ),

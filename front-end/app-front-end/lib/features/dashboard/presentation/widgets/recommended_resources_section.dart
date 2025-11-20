@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -12,25 +13,25 @@ class RecommendedResourcesSection extends StatelessWidget {
       ResourceItem(
         title: '5 Ways to Use Overripe Bananas',
         description: 'Don\'t throw them away! Make delicious treats',
-        imageIcon: Icons.lightbulb_outline,
+        imageIcon: HugeIcons.strokeRoundedIdea,
         color: AppColors.secondaryOrange,
       ),
       ResourceItem(
         title: 'Smart Food Storage Tips',
         description: 'Keep your produce fresh longer',
-        imageIcon: Icons.kitchen_outlined,
+        imageIcon: HugeIcons.strokeRoundedKitchenUtensils,
         color: AppColors.primaryGreen,
       ),
       ResourceItem(
         title: 'Meal Planning 101',
         description: 'Plan ahead to reduce waste',
-        imageIcon: Icons.calendar_today_outlined,
+        imageIcon: HugeIcons.strokeRoundedCalendar03,
         color: AppColors.infoBlue,
       ),
       ResourceItem(
         title: 'Composting Basics',
         description: 'Turn food scraps into garden gold',
-        imageIcon: Icons.eco_outlined,
+        imageIcon: HugeIcons.strokeRoundedLeaf01,
         color: AppColors.successGreen,
       ),
     ];
@@ -84,8 +85,8 @@ class RecommendedResourcesSection extends StatelessWidget {
               ),
             ),
             child: Center(
-              child: Icon(
-                resource.imageIcon,
+              child: HugeIcon(
+                icon: resource.imageIcon,
                 size: 40,
                 color: AppColors.neutralWhite,
               ),
@@ -128,8 +129,8 @@ class RecommendedResourcesSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    Icon(
-                      Icons.arrow_forward,
+                    HugeIcon(
+                      icon: HugeIcons.strokeRoundedArrowRight01,
                       size: 14,
                       color: resource.color,
                     ),
@@ -147,7 +148,7 @@ class RecommendedResourcesSection extends StatelessWidget {
 class ResourceItem {
   final String title;
   final String description;
-  final IconData imageIcon;
+  final dynamic imageIcon;
   final Color color;
 
   ResourceItem({

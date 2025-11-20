@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -13,31 +14,31 @@ class ExpiringSoonSection extends StatelessWidget {
         name: 'Fresh Milk',
         daysLeft: 2,
         category: 'Dairy',
-        imageIcon: Icons.local_drink_outlined,
+        imageIcon: HugeIcons.strokeRoundedMilkBottle,
       ),
       ExpiringItem(
         name: 'Strawberries',
         daysLeft: 1,
         category: 'Fruits',
-        imageIcon: Icons.set_meal_outlined,
+        imageIcon: HugeIcons.strokeRoundedCherry,
       ),
       ExpiringItem(
         name: 'Greek Yogurt',
         daysLeft: 3,
         category: 'Dairy',
-        imageIcon: Icons.icecream_outlined,
+        imageIcon: HugeIcons.strokeRoundedIceCream01,
       ),
       ExpiringItem(
         name: 'Chicken Breast',
         daysLeft: 2,
         category: 'Meat',
-        imageIcon: Icons.restaurant_outlined,
+        imageIcon: HugeIcons.strokeRoundedChickenThighs,
       ),
       ExpiringItem(
         name: 'Lettuce',
         daysLeft: 1,
         category: 'Vegetables',
-        imageIcon: Icons.grass_outlined,
+        imageIcon: HugeIcons.strokeRoundedVegetarianFood,
       ),
     ];
 
@@ -97,8 +98,8 @@ class ExpiringSoonSection extends StatelessWidget {
                 color: AppColors.neutralLightGray,
                 borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
               ),
-              child: Icon(
-                item.imageIcon,
+              child: HugeIcon(
+                icon: item.imageIcon,
                 size: 28,
                 color: AppColors.primaryGreen,
               ),
@@ -142,8 +143,8 @@ class ExpiringSoonSection extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.access_time,
+                  HugeIcon(
+                    icon: HugeIcons.strokeRoundedClock01,
                     size: 10,
                     color: badgeColor,
                   ),
@@ -170,7 +171,7 @@ class ExpiringItem {
   final String name;
   final int daysLeft;
   final String category;
-  final IconData imageIcon;
+  final dynamic imageIcon;
 
   ExpiringItem({
     required this.name,

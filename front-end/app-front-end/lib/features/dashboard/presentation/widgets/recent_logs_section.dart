@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -13,28 +14,28 @@ class RecentLogsSection extends StatelessWidget {
         title: 'Added Organic Apples',
         subtitle: '2 kg • Expires in 7 days',
         time: '2 hours ago',
-        icon: Icons.add_circle_outline,
+        icon: HugeIcons.strokeRoundedAddCircle,
         iconColor: AppColors.successGreen,
       ),
       LogItem(
         title: 'Used Fresh Tomatoes',
         subtitle: '500g • Made pasta sauce',
         time: '5 hours ago',
-        icon: Icons.check_circle_outline,
+        icon: HugeIcons.strokeRoundedCheckmarkCircle02,
         iconColor: AppColors.primaryGreen,
       ),
       LogItem(
         title: 'Expired Bread',
         subtitle: '1 loaf • Moved to compost',
         time: 'Yesterday',
-        icon: Icons.warning_amber_outlined,
+        icon: HugeIcons.strokeRoundedAlertCircle,
         iconColor: AppColors.warningYellow,
       ),
       LogItem(
         title: 'Shared with Neighbor',
         subtitle: 'Extra vegetables',
         time: '2 days ago',
-        icon: Icons.volunteer_activism_outlined,
+        icon: HugeIcons.strokeRoundedShare08,
         iconColor: AppColors.infoBlue,
       ),
     ];
@@ -80,8 +81,8 @@ class RecentLogsSection extends StatelessWidget {
           color: log.iconColor.withOpacity(0.15),
           borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
         ),
-        child: Icon(
-          log.icon,
+        child: HugeIcon(
+          icon: log.icon,
           color: log.iconColor,
           size: 20,
         ),
@@ -113,7 +114,7 @@ class LogItem {
   final String title;
   final String subtitle;
   final String time;
-  final IconData icon;
+  final dynamic icon;
   final Color iconColor;
 
   LogItem({

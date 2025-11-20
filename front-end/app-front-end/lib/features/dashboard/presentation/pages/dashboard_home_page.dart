@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -35,8 +36,8 @@ class DashboardHomePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.notifications_outlined,
+            icon: const HugeIcon(
+              icon: HugeIcons.strokeRoundedNotification02,
               color: AppColors.neutralBlack,
             ),
             onPressed: () {
@@ -44,8 +45,8 @@ class DashboardHomePage extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: const Icon(
-              Icons.person_outline,
+            icon: const HugeIcon(
+              icon: HugeIcons.strokeRoundedUser,
               color: AppColors.neutralBlack,
             ),
             onPressed: () {
@@ -123,7 +124,10 @@ class DashboardHomePage extends StatelessWidget {
         backgroundColor: AppColors.primaryGreen,
         foregroundColor: AppColors.neutralWhite,
         elevation: AppSpacing.elevationMedium,
-        icon: const Icon(Icons.add),
+        icon: const HugeIcon(
+          icon: HugeIcons.strokeRoundedAdd01,
+          color: AppColors.neutralWhite,
+        ),
         label: Text(
           'Add Item',
           style: AppTypography.button,
@@ -179,8 +183,8 @@ class DashboardHomePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                Icon(
-                  Icons.arrow_forward_ios,
+                HugeIcon(
+                  icon: HugeIcons.strokeRoundedArrowRight01,
                   size: 12,
                   color: AppColors.primaryGreen,
                 ),
@@ -226,7 +230,7 @@ class DashboardHomePage extends StatelessWidget {
               // Add options
               _buildAddOption(
                 context,
-                icon: Icons.scanner,
+                icon: HugeIcons.strokeRoundedQrCode,
                 title: 'Scan Barcode',
                 subtitle: 'Scan product barcode',
                 onTap: () {
@@ -237,7 +241,7 @@ class DashboardHomePage extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               _buildAddOption(
                 context,
-                icon: Icons.edit_outlined,
+                icon: HugeIcons.strokeRoundedEdit02,
                 title: 'Manual Entry',
                 subtitle: 'Enter item details manually',
                 onTap: () {
@@ -248,7 +252,7 @@ class DashboardHomePage extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               _buildAddOption(
                 context,
-                icon: Icons.camera_alt_outlined,
+                icon: HugeIcons.strokeRoundedCamera01,
                 title: 'Take Photo',
                 subtitle: 'Capture receipt or item',
                 onTap: () {
@@ -267,7 +271,7 @@ class DashboardHomePage extends StatelessWidget {
 
   Widget _buildAddOption(
     BuildContext context, {
-    required IconData icon,
+    required dynamic icon,
     required String title,
     required String subtitle,
     required VoidCallback onTap,
@@ -290,8 +294,8 @@ class DashboardHomePage extends StatelessWidget {
                 color: AppColors.primaryGreenLight.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
               ),
-              child: Icon(
-                icon,
+              child: HugeIcon(
+                icon: icon,
                 color: AppColors.primaryGreen,
                 size: AppSpacing.iconMD,
               ),
@@ -317,8 +321,8 @@ class DashboardHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
+            HugeIcon(
+              icon: HugeIcons.strokeRoundedArrowRight01,
               size: AppSpacing.iconSM,
               color: AppColors.neutralGray,
             ),
