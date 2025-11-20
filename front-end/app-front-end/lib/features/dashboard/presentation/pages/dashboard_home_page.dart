@@ -84,6 +84,7 @@ class DashboardHomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: AppSpacing.md),
                 // Inventory Summary Card
                 const InventorySummaryCard(),
                 
