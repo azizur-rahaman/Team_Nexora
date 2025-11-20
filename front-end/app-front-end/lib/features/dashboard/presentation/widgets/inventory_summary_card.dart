@@ -91,31 +91,31 @@ class InventorySummaryCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
             
             // Eco Impact
-            Container(
-              padding: const EdgeInsets.all(AppSpacing.sm),
-              decoration: BoxDecoration(
-                color: AppColors.neutralWhite.withOpacity(0.15),
-                borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
-              ),
-              child: Row(
-                children: [
-                  HugeIcon(
-                    icon: HugeIcons.strokeRoundedLeaf01,
-                    color: AppColors.neutralWhite,
-                    size: AppSpacing.iconSM,
-                  ),
-                  const SizedBox(width: AppSpacing.sm),
-                  Expanded(
-                    child: Text(
-                      'You\'ve saved 12.5 kg of food this month! 🌱',
-                      style: AppTypography.bodySmall.copyWith(
-                        color: AppColors.neutralWhite,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.all(AppSpacing.sm),
+            //   decoration: BoxDecoration(
+            //     color: AppColors.neutralWhite.withOpacity(0.15),
+            //     borderRadius: BorderRadius.circular(AppSpacing.radiusSM),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       HugeIcon(
+            //         icon: HugeIcons.strokeRoundedLeaf01,
+            //         color: AppColors.neutralWhite,
+            //         size: AppSpacing.iconSM,
+            //       ),
+            //       const SizedBox(width: AppSpacing.sm),
+            //       Expanded(
+            //         child: Text(
+            //           'You\'ve saved 12.5 kg of food this month! 🌱',
+            //           style: AppTypography.bodySmall.copyWith(
+            //             color: AppColors.neutralWhite,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

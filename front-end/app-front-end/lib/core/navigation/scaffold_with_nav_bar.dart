@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '../theme/app_colors.dart';
@@ -56,8 +57,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Container(
-              width: 56,
-              height: 56,
+              width: 50.w,
+              height: 50.w,
               decoration: BoxDecoration(
                 color: AppColors.primaryGreen,
                 shape: BoxShape.circle,
@@ -69,10 +70,13 @@ class ScaffoldWithNavBar extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const HugeIcon(
-                icon: HugeIcons.strokeRoundedShoppingBag01,
-                color: AppColors.neutralWhite,
-                size: 28,
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: HugeIcon(
+                  icon: HugeIcons.strokeRoundedAdd01,
+                  color: AppColors.neutralWhite,
+                  size: 18.sp,
+                ),
               ),
             ),
             label: '',
