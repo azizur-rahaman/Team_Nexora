@@ -549,8 +549,9 @@ class _AIMealPlanGeneratorPageState extends State<AIMealPlanGeneratorPage> {
         _currentStep++;
       });
     } else {
-      // Navigate to budget input
-      // context.push('/meal-planner/budget-input');
+      // Navigate to budget input with preferences
+      final preferencesQuery = _selectedPreferences.join(',');
+      context.push('/meal-planner/budget?preferences=$preferencesQuery&meals=$_numberOfMeals');
     }
   }
 }

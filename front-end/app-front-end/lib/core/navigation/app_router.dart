@@ -17,6 +17,14 @@ import '../../features/consumption/presentation/pages/add_consumption_log_page.d
 import '../../features/consumption/presentation/pages/edit_consumption_log_page.dart';
 import '../../features/consumption/presentation/pages/consumption_log_details_page.dart';
 import '../../features/consumption/presentation/pages/ai_insights_page.dart';
+import '../../features/meal_planner/presentation/pages/weekly_meal_planner_page.dart';
+import '../../features/meal_planner/presentation/pages/ai_meal_plan_generator_page.dart';
+import '../../features/meal_planner/presentation/pages/budget_input_page.dart';
+import '../../features/meal_planner/presentation/pages/suggested_meal_plan_page.dart';
+import '../../features/meal_planner/presentation/pages/shopping_list_page.dart';
+import '../../features/meal_planner/presentation/pages/replace_ingredient_screen.dart';
+import '../../features/chatbot/presentation/pages/chatbot_screen.dart';
+import '../../features/chatbot/presentation/pages/bot_settings_page.dart';
 import '../../features/inventory/presentation/pages/inventory_list_page.dart';
 import '../../features/inventory/presentation/pages/add_inventory_item_page.dart';
 import '../../features/inventory/presentation/pages/edit_inventory_item_page.dart';
@@ -91,6 +99,58 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/ai-insights',
       builder: (context, state) => const AIInsightsPage(),
+    ),
+    
+    // Meal Planner Routes (outside shell)
+    GoRoute(
+      path: '/meal-planner',
+      builder: (context, state) => const WeeklyMealPlannerPage(),
+    ),
+    GoRoute(
+      path: '/meal-planner/generator',
+      builder: (context, state) => const AIMealPlanGeneratorPage(),
+    ),
+    GoRoute(
+      path: '/meal-planner/budget',
+      builder: (context, state) {
+        final preferences = state.uri.queryParameters['preferences']?.split(',') ?? [];
+        final meals = int.tryParse(state.uri.queryParameters['meals'] ?? '3') ?? 3;
+        return BudgetInputPage(
+          dietaryPreferences: preferences,
+          numberOfMeals: meals,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/meal-planner/suggested',
+      builder: (context, state) {
+        final budget = double.tryParse(state.uri.queryParameters['budget'] ?? '100') ?? 100.0;
+        final preferences = state.uri.queryParameters['preferences']?.split(',') ?? [];
+        final meals = int.tryParse(state.uri.queryParameters['meals'] ?? '3') ?? 3;
+        return SuggestedMealPlanPage(
+          budget: budget,
+          dietaryPreferences: preferences,
+          numberOfMeals: meals,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/meal-planner/shopping',
+      builder: (context, state) => const ShoppingListPage(),
+    ),
+    GoRoute(
+      path: '/meal-planner/replace',
+      builder: (context, state) => const ReplaceIngredientScreen(),
+    ),
+    
+    // Chatbot Routes (outside shell)
+    GoRoute(
+      path: '/chatbot',
+      builder: (context, state) => const ChatbotScreen(),
+    ),
+    GoRoute(
+      path: '/chatbot/settings',
+      builder: (context, state) => const BotSettingsPage(),
     ),
     
     // Profile Settings (outside shell)

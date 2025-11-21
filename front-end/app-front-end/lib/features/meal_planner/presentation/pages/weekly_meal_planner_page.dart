@@ -49,7 +49,7 @@ class _WeeklyMealPlannerPageState extends State<WeeklyMealPlannerPage> {
           IconButton(
             icon: const Icon(Icons.auto_awesome, color: AppColors.primaryGreen),
             onPressed: () {
-              // Navigate to AI Meal Plan Generator
+              context.push('/meal-planner/generator');
             },
             tooltip: 'Generate AI Plan',
           ),
@@ -428,7 +428,7 @@ class _WeeklyMealPlannerPageState extends State<WeeklyMealPlannerPage> {
           Icons.auto_awesome,
           AppColors.primaryGreen,
           () {
-            // Navigate to AI generator
+            context.push('/meal-planner/generator');
           },
         ),
         const SizedBox(height: AppSpacing.sm),
@@ -437,7 +437,7 @@ class _WeeklyMealPlannerPageState extends State<WeeklyMealPlannerPage> {
           Icons.shopping_cart,
           AppColors.infoBlue,
           () {
-            // Navigate to shopping list
+            context.push('/meal-planner/shopping');
           },
         ),
       ],

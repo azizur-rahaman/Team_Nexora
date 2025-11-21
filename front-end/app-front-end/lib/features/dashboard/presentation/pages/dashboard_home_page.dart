@@ -118,6 +118,26 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
                   },
                   child: _buildAIInsightsCard(),
                 ),
+
+                const SizedBox(height: AppSpacing.md),
+
+                // Meal Planner Card - Navigation to meal planning
+                GestureDetector(
+                  onTap: () {
+                    context.push('/meal-planner');
+                  },
+                  child: _buildMealPlannerCard(),
+                ),
+                
+                const SizedBox(height: AppSpacing.lg),
+                
+                // Chatbot Card
+                GestureDetector(
+                  onTap: () {
+                    context.push('/chatbot');
+                  },
+                  child: _buildChatbotCard(),
+                ),
                 
                 const SizedBox(height: AppSpacing.lg),
                 
@@ -284,6 +304,140 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
                 const SizedBox(height: 4),
                 Text(
                   'Get smart predictions & waste analysis',
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.neutralWhite.withOpacity(0.9),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const HugeIcon(
+            icon: HugeIcons.strokeRoundedArrowRight01,
+            color: AppColors.neutralWhite,
+            size: 20,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMealPlannerCard() {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            AppColors.secondaryOrange,
+            AppColors.secondaryOrangeLight,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLG),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.secondaryOrange.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.sm),
+            decoration: BoxDecoration(
+              color: AppColors.neutralWhite.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
+            ),
+            child: const HugeIcon(
+              icon: HugeIcons.strokeRoundedRestaurant01,
+              color: AppColors.neutralWhite,
+              size: 32,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'AI Meal Planner',
+                  style: AppTypography.h5.copyWith(
+                    color: AppColors.neutralWhite,
+                    fontWeight: AppTypography.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Plan meals & save on groceries',
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.neutralWhite.withOpacity(0.9),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const HugeIcon(
+            icon: HugeIcons.strokeRoundedArrowRight01,
+            color: AppColors.neutralWhite,
+            size: 20,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChatbotCard() {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF00B4D8), // Teal/Cyan
+            Color(0xFF90E0EF), // Light Cyan
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLG),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF00B4D8).withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.sm),
+            decoration: BoxDecoration(
+              color: AppColors.neutralWhite.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
+            ),
+            child: const Icon(
+              Icons.smart_toy_rounded,
+              color: AppColors.neutralWhite,
+              size: 32,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Ask NourishBot',
+                  style: AppTypography.h5.copyWith(
+                    color: AppColors.neutralWhite,
+                    fontWeight: AppTypography.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'AI assistant for nutrition & tips',
                   style: AppTypography.bodySmall.copyWith(
                     color: AppColors.neutralWhite.withOpacity(0.9),
                   ),

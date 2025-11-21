@@ -473,7 +473,8 @@ class _SuggestedMealPlanPageState extends State<SuggestedMealPlanPage> {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Apply plan and navigate to weekly planner
+                // Apply plan and navigate back to weekly planner
+                context.go('/meal-planner');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryGreen,
@@ -491,7 +492,7 @@ class _SuggestedMealPlanPageState extends State<SuggestedMealPlanPage> {
             const SizedBox(height: AppSpacing.sm),
             OutlinedButton(
               onPressed: () {
-                // Generate shopping list
+                context.push('/meal-planner/shopping');
               },
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),

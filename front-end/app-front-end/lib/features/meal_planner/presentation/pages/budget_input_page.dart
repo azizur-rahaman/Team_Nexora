@@ -417,11 +417,10 @@ class _BudgetInputPageState extends State<BudgetInputPage> {
   }
 
   void _generatePlan() {
-    // Navigate to suggested meal plan
-    // context.push('/meal-planner/suggested-plan', extra: {
-    //   'budget': _currentBudget,
-    //   'preferences': widget.dietaryPreferences,
-    //   'meals': widget.numberOfMeals,
-    // });
+    // Navigate to suggested meal plan with parameters
+    final preferencesQuery = widget.dietaryPreferences.join(',');
+    context.push(
+      '/meal-planner/suggested?budget=$_currentBudget&preferences=$preferencesQuery&meals=${widget.numberOfMeals}',
+    );
   }
 }
