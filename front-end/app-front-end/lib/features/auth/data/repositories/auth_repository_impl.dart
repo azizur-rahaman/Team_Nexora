@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
@@ -18,21 +19,39 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final user = await remoteDataSource.login(email, password);
       return Right(user);
+    } on UnauthorizedException catch (e) {
+      return Left(ValidationFailure(e.message ?? 'Invalid credentials'));
+    } on ValidationException catch (e) {
+      return Left(ValidationFailure(e.message));
+    } on NetworkException {
+      return Left(NetworkFailure());
+    } on SocketException {
+      return Left(NetworkFailure());
     } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
       return Left(ServerFailure());
     }
   }
 
   @override
   Future<Either<Failure, User>> register({
+    required String username,
     required String email,
     required String password,
-    required String name,
   }) async {
     try {
-      final user = await remoteDataSource.register(email, password, name);
+      final user = await remoteDataSource.register(username, email, password);
       return Right(user);
+    } on ValidationException catch (e) {
+      return Left(ValidationFailure(e.message));
+    } on NetworkException {
+      return Left(NetworkFailure());
+    } on SocketException {
+      return Left(NetworkFailure());
     } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
       return Left(ServerFailure());
     }
   }
@@ -42,7 +61,13 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       await remoteDataSource.logout();
       return const Right(null);
+    } on NetworkException {
+      return Left(NetworkFailure());
+    } on SocketException {
+      return Left(NetworkFailure());
     } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
       return Left(ServerFailure());
     }
   }
@@ -52,7 +77,15 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final user = await remoteDataSource.getCurrentUser();
       return Right(user);
+    } on UnauthorizedException {
+      return const Left(ValidationFailure('Not authenticated'));
+    } on NetworkException {
+      return Left(NetworkFailure());
+    } on SocketException {
+      return Left(NetworkFailure());
     } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
       return Left(ServerFailure());
     }
   }

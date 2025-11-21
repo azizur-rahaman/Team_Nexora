@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
@@ -14,6 +15,20 @@ extension ConsumptionCategoryX on ConsumptionCategory {
         return 'Fruit';
       case ConsumptionCategory.grain:
         return 'Grain';
+    }
+  }
+
+  /// Parse from string for API communication
+  static ConsumptionCategory fromString(String value) {
+    switch (value.toLowerCase()) {
+      case 'dairy':
+        return ConsumptionCategory.dairy;
+      case 'fruit':
+        return ConsumptionCategory.fruit;
+      case 'grain':
+        return ConsumptionCategory.grain;
+      default:
+        throw ArgumentError('Invalid category: $value');
     }
   }
 
@@ -40,7 +55,7 @@ extension ConsumptionCategoryX on ConsumptionCategory {
   }
 }
 
-class ConsumptionLog {
+class ConsumptionLog extends Equatable {
   const ConsumptionLog({
     required this.id,
     required this.itemName,
@@ -49,6 +64,9 @@ class ConsumptionLog {
     required this.category,
     required this.date,
     this.notes,
+    required this.userId,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   final String id;
@@ -58,6 +76,52 @@ class ConsumptionLog {
   final ConsumptionCategory category;
   final DateTime date;
   final String? notes;
+  final String userId;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  @override
+  List<Object?> get props => [
+        id,
+        itemName,
+        quantity,
+        unit,
+        category,
+        date,
+        notes,
+        userId,
+        createdAt,
+        updatedAt,
+      ];
+
+  /// Get formatted quantity with unit
+  String get formattedQuantity => '$quantity $unit';
+
+  /// Get time ago string
+  String get timeAgo {
+    final now = DateTime.now();
+    final difference = now.difference(date);
+
+    if (difference.inDays > 7) {
+      return '${difference.inDays} days ago';
+    } else if (difference.inDays > 0) {
+      return '${difference.inDays} ${difference.inDays == 1 ? 'day' : 'days'} ago';
+    } else if (difference.inHours > 0) {
+      return '${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'} ago';
+    } else if (difference.inMinutes > 0) {
+      return '${difference.inMinutes} ${difference.inMinutes == 1 ? 'minute' : 'minutes'} ago';
+    } else {
+      return 'Just now';
+    }
+  }
+
+  /// Check if the log is from today
+  bool get isToday {
+    final now = DateTime.now();
+    return date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day;
+  }
 
   ConsumptionLog copyWith({
     String? itemName,
@@ -66,6 +130,9 @@ class ConsumptionLog {
     ConsumptionCategory? category,
     DateTime? date,
     String? notes,
+    String? userId,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return ConsumptionLog(
       id: id,
@@ -75,6 +142,9 @@ class ConsumptionLog {
       category: category ?? this.category,
       date: date ?? this.date,
       notes: notes ?? this.notes,
+      userId: userId ?? this.userId,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }
@@ -89,6 +159,9 @@ class ConsumptionLogSamples {
           category: ConsumptionCategory.dairy,
           date: DateTime.now().subtract(const Duration(hours: 3)),
           notes: 'Used in breakfast cereal.',
+          userId: 'user-123',
+          createdAt: DateTime.now().subtract(const Duration(hours: 3)),
+          updatedAt: DateTime.now().subtract(const Duration(hours: 3)),
         ),
         ConsumptionLog(
           id: 'log-002',
@@ -98,6 +171,9 @@ class ConsumptionLogSamples {
           category: ConsumptionCategory.fruit,
           date: DateTime.now().subtract(const Duration(days: 1)),
           notes: 'Smoothie batch for 2 servings.',
+          userId: 'user-123',
+          createdAt: DateTime.now().subtract(const Duration(days: 1)),
+          updatedAt: DateTime.now().subtract(const Duration(days: 1)),
         ),
         ConsumptionLog(
           id: 'log-003',
@@ -107,6 +183,9 @@ class ConsumptionLogSamples {
           category: ConsumptionCategory.grain,
           date: DateTime.now().subtract(const Duration(days: 2)),
           notes: 'Cooked for dinner prep.',
+          userId: 'user-123',
+          createdAt: DateTime.now().subtract(const Duration(days: 2)),
+          updatedAt: DateTime.now().subtract(const Duration(days: 2)),
         ),
       ];
 

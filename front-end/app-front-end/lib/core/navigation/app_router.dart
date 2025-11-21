@@ -16,6 +16,7 @@ import '../../features/consumption/presentation/pages/consumption_logs_list_page
 import '../../features/consumption/presentation/pages/add_consumption_log_page.dart';
 import '../../features/consumption/presentation/pages/edit_consumption_log_page.dart';
 import '../../features/consumption/presentation/pages/consumption_log_details_page.dart';
+import '../../features/consumption/presentation/pages/ai_insights_page.dart';
 import '../../features/inventory/presentation/pages/inventory_list_page.dart';
 import '../../features/inventory/presentation/pages/add_inventory_item_page.dart';
 import '../../features/inventory/presentation/pages/edit_inventory_item_page.dart';
@@ -84,6 +85,12 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/consumption-logs/details',
       builder: (context, state) => ConsumptionLogDetailsPage.preview(),
+    ),
+    
+    // AI Insights (outside shell)
+    GoRoute(
+      path: '/ai-insights',
+      builder: (context, state) => const AIInsightsPage(),
     ),
     
     // Profile Settings (outside shell)

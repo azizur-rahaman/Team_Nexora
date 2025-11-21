@@ -111,6 +111,16 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
                 
                 const SizedBox(height: AppSpacing.lg),
                 
+                // AI Insights Card - Navigation to AI analysis
+                GestureDetector(
+                  onTap: () {
+                    context.push('/ai-insights');
+                  },
+                  child: _buildAIInsightsCard(),
+                ),
+                
+                const SizedBox(height: AppSpacing.lg),
+                
                 // Community Surplus Card
                 const CommunitySurplusCard(),
                 
@@ -221,6 +231,73 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
             ),
           ),
       ],
+    );
+  }
+
+  Widget _buildAIInsightsCard() {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            AppColors.primaryGreen,
+            AppColors.primaryGreenDark,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLG),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryGreen.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.sm),
+            decoration: BoxDecoration(
+              color: AppColors.neutralWhite.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(AppSpacing.radiusMD),
+            ),
+            child: const HugeIcon(
+              icon: HugeIcons.strokeRoundedAiInnovation01,
+              color: AppColors.neutralWhite,
+              size: 32,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'AI Consumption Insights',
+                  style: AppTypography.h5.copyWith(
+                    color: AppColors.neutralWhite,
+                    fontWeight: AppTypography.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Get smart predictions & waste analysis',
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.neutralWhite.withOpacity(0.9),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const HugeIcon(
+            icon: HugeIcons.strokeRoundedArrowRight01,
+            color: AppColors.neutralWhite,
+            size: 20,
+          ),
+        ],
+      ),
     );
   }
 }

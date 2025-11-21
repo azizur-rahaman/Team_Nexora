@@ -1,13 +1,19 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/network_info.dart';
+import 'core/network/http_client_interceptor.dart';
+import 'core/network/token_storage.dart';
+import 'core/network/logging_interceptor.dart';
 import 'features/auth/data/datasources/auth_remote_data_source.dart';
 import 'features/auth/data/datasources/auth_remote_data_source_impl.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/usecases/login.dart';
+import 'features/auth/domain/usecases/register_user.dart';
+import 'features/auth/domain/usecases/logout.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/inventory/data/datasources/inventory_data_source.dart';
 import 'features/inventory/data/repositories/inventory_repository_impl.dart';
@@ -38,17 +44,21 @@ import 'features/surplus/presentation/bloc/surplus_bloc.dart';
 
 final sl = GetIt.instance;
 
-Future<void> init() async {
+Future<void> init(SharedPreferences sharedPreferences) async {
   //! Features - Auth
   // Bloc
   sl.registerFactory(
     () => AuthBloc(
       login: sl(),
+      registerUser: sl(),
+      logout: sl(),
     ),
   );
 
   // Use cases
   sl.registerLazySingleton(() => Login(sl()));
+  sl.registerLazySingleton(() => RegisterUser(sl()));
+  sl.registerLazySingleton(() => Logout(sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(
@@ -59,7 +69,10 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(client: sl()),
+    () => AuthRemoteDataSourceImpl(
+      client: sl(),
+      tokenStorage: sl<TokenProvider>() as TokenStorage,
+    ),
   );
 
   //! Features - Inventory
@@ -159,7 +172,25 @@ Future<void> init() async {
   );
 
   //! External
-  sl.registerLazySingleton(() => http.Client());
+  // SharedPreferences is passed as parameter and initialized in main.dart
+  sl.registerLazySingleton(() => sharedPreferences);
+
+  // Token Storage
+  sl.registerLazySingleton<TokenProvider>(
+    () => TokenStorage(sharedPreferences: sl()),
+  );
+
+  // HTTP Client with interceptors
+  sl.registerLazySingleton<http.Client>(
+    () => HttpClientInterceptor(
+      inner: http.Client(),
+      tokenProvider: sl<TokenProvider>(),
+      onRequest: LoggingInterceptor.logRequest,
+      onResponse: LoggingInterceptor.logResponse,
+      onError: LoggingInterceptor.logError,
+    ),
+  );
+
   sl.registerLazySingleton(() => InternetConnectionChecker.instance);
 }
 

@@ -9,7 +9,7 @@ abstract class AuthRemoteDataSource {
   /// Calls the http://api.example.com/register endpoint
   /// 
   /// Throws a [ServerException] for all error codes
-  Future<UserModel> register(String email, String password, String name);
+  Future<UserModel> register(String username, String email, String password);
 
   /// Logout the current user
   Future<void> logout();

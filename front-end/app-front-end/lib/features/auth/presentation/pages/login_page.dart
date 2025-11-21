@@ -385,17 +385,12 @@ class _LoginPageState extends State<LoginPage> {
             ? null
             : () {
                 if (_formKey.currentState!.validate()) {
-                  // TODO: Implement actual authentication
-                  // For now, navigate directly to home
-                  context.go('/home');
-                  
-                  // Uncomment when backend is ready:
-                  // context.read<AuthBloc>().add(
-                  //       LoginRequested(
-                  //         email: _emailController.text.trim(),
-                  //         password: _passwordController.text,
-                  //       ),
-                  //     );
+                  context.read<AuthBloc>().add(
+                    LoginRequested(
+                      email: _emailController.text.trim(),
+                      password: _passwordController.text,
+                    ),
+                  );
                 }
               },
         style: ElevatedButton.styleFrom(

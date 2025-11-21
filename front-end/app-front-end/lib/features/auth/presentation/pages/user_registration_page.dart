@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -14,23 +15,19 @@ class UserRegistrationPage extends StatefulWidget {
 
 class _UserRegistrationPageState extends State<UserRegistrationPage> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  final _householdSizeController = TextEditingController();
-  final _locationController = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
-    _householdSizeController.dispose();
-    _locationController.dispose();
     super.dispose();
   }
 
@@ -62,10 +59,25 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
               SnackBar(
                 content: Text(state.message),
                 backgroundColor: AppColors.errorRed,
+                duration: const Duration(seconds: 3),
               ),
             );
           } else if (state is AuthAuthenticated) {
-            // Navigate to home page
+            // Show success message
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Account created successfully! Please login.'),
+                backgroundColor: AppColors.successGreen,
+                duration: Duration(seconds: 2),
+              ),
+            );
+            
+            // Navigate back to login page after a short delay
+            Future.delayed(const Duration(milliseconds: 500), () {
+              if (context.mounted) {
+                context.go('/login');
+              }
+            });
           }
         },
         builder: (context, state) {
@@ -110,15 +122,15 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
                       
                       const SizedBox(height: AppSpacing.xl),
                       
-                      // Name Field
+                      // Username Field
                       _buildTextField(
-                        controller: _nameController,
-                        label: 'Full Name',
-                        hint: 'Enter your full name',
+                        controller: _usernameController,
+                        label: 'Username',
+                        hint: 'Enter your username',
                         icon: Icons.person_outline,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your name';
+                            return 'Please enter your username';
                           }
                           return null;
                         },
@@ -190,39 +202,6 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
                         },
                       ),
                       const SizedBox(height: AppSpacing.md),
-                      
-                      // Household Size Field
-                      _buildTextField(
-                        controller: _householdSizeController,
-                        label: 'Household Size',
-                        hint: 'Number of people in your household',
-                        icon: Icons.groups_outlined,
-                        keyboardType: TextInputType.number,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter household size';
-                          }
-                          if (int.tryParse(value) == null || int.parse(value) < 1) {
-                            return 'Please enter a valid number';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: AppSpacing.md),
-                      
-                      // Location Field
-                      _buildTextField(
-                        controller: _locationController,
-                        label: 'Location',
-                        hint: 'Enter your city or area',
-                        icon: Icons.location_on_outlined,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your location';
-                          }
-                          return null;
-                        },
-                      ),
                       
                       const SizedBox(height: AppSpacing.xl),
                       
@@ -464,11 +443,11 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
       child: ElevatedButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            // TODO: Implement registration logic
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Registration successful!'),
-                backgroundColor: AppColors.successGreen,
+            context.read<AuthBloc>().add(
+              RegisterRequested(
+                username: _usernameController.text.trim(),
+                email: _emailController.text.trim(),
+                password: _passwordController.text,
               ),
             );
           }
