@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -24,58 +23,37 @@ class OnboardingContentWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // SizedBox(height: AppSpacing.xl.h * 2),
-
-          // Title with Typewriter Animation
+          // Title
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.md.w),
-            child: AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  item.title,
-                  textStyle: AppTypography.h2.copyWith(
-                    fontSize: 32.sp,
-                    fontWeight: AppTypography.bold,
-                    color: AppColors.neutralBlack,
-                  ),
-                  textAlign: TextAlign.start,
-                  speed: const Duration(milliseconds: 100),
-                ),
-              ],
-              totalRepeatCount: 1,
-              pause: const Duration(milliseconds: 1000),
-              displayFullTextOnTap: true,
-              stopPauseOnTap: true,
+            child: Text(
+              item.title,
+              style: AppTypography.h2.copyWith(
+                fontSize: 32.sp,
+                fontWeight: AppTypography.bold,
+                color: AppColors.neutralBlack,
+              ),
+              textAlign: TextAlign.start,
             ),
           ),
 
           SizedBox(height: AppSpacing.md.h),
 
-          // Description with Typewriter Animation
+          // Description
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.md.w),
-            child: AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  item.description,
-                  textStyle: AppTypography.bodyLarge.copyWith(
-                    fontSize: 16.sp,
-                    color: AppColors.neutralDarkGray,
-                    height: 1.6,
-                  ),
-                  textAlign: TextAlign.start,
-                  speed: const Duration(milliseconds: 50),
-                ),
-              ],
-              totalRepeatCount: 1,
-              pause: const Duration(milliseconds: 1000),
-              displayFullTextOnTap: true,
-              stopPauseOnTap: true,
+            child: Text(
+              item.description,
+              style: AppTypography.bodyLarge.copyWith(
+                fontSize: 16.sp,
+                color: AppColors.neutralDarkGray,
+                height: 1.6,
+              ),
+              textAlign: TextAlign.start,
             ),
           ),
 
-
-                    // Image
+          // Image
           Expanded(
             flex: 3,
             child: Container(
